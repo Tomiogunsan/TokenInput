@@ -1,30 +1,84 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- Include the component in your project by importing it: -->
 
-Currently, two official plugins are available:
+import TokenInput from './TokenInput';
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+Props
+The component accepts the following props:
+`name` (string): Optional. The name attribute for the input fields. Useful for form submissions.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`onKeyDown` (function): Optional. A callback that is triggered on a keydown event in any of the input fields.
 
-- Configure the top-level `parserOptions` property like this:
+`length `(number, required): Required. The number of input fields to render.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
+`id` (string): Optional. The ID attribute for the input fields.
+
+`className` (string): Optional. The className for the input fields, allowing for custom styling.
+
+`onSubmit` (function): Optional. A callback that is triggered when the Enter key is pressed. It receives the concatenated value of all inputs as an argument.
+
+
+Usage
+Here's an example of how to use the TokenInput component:
+
+import React from 'react';
+import TokenInput from './TokenInput';
+
+const MyComponent = () => {
+  const handleKeyDown = (e) => {
+    console.log('Key down:', e.key);
+  };
+
+  const handleSubmit = (token) => {
+    console.log('Token submitted:', token);
+  };
+
+  return (
+    <TokenInput
+      name="verificationCode"
+      length={6}
+      onKeyDown={handleKeyDown}
+      onSubmit={handleSubmit}
+      className="my-token-input"
+    />
+  );
+};
+
+export default MyComponent;
+
+
+How It Works
+
+The component renders a series of input fields based on the length prop.
+
+Focus automatically shifts to the next input when a user enters a value and to the previous input if they clear a field.
+
+The onSubmit prop is called when the Enter key is pressed, passing the concatenated token value as a string.
+
+The component uses React's useRef hook to manage focus and useEffect to update the input fields whenever the length prop changes.
+
+
+Styling
+
+The TokenInput component allows custom styling through the className prop. Each input element can be styled individually or as a group using the provided class names.
+
+Example Styles
+
+You can style the input fields like this:
+
+.my-token-input {
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  margin: 0 0.5em;
+  font-size: 1.5em;
 }
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+Notes
+
+Ensure that the `length ` prop is set correctly according to the number of inputs you require.
+
+The component relies on the correct implementation of focus shifting, so ensure that the input fields are rendered correctly and that no external factors interfere with the DOM structure.

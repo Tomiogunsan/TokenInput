@@ -39,7 +39,8 @@ const TokenInput = (props: IInputProps) => {
  
 
   return (
-    <div ref={tokenInputRef} name={name} tabIndex={-1} className='tokenInputContainer'>
+    // @ts-expect-error  token input container name attribute
+   <div ref={tokenInputRef} name={name} tabIndex={-1} className='tokenInputContainer'>
       {Array.from({ length: length }).map((_digit, idx) => (
         <input
           onChange={(e) => {
