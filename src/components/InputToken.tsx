@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { IInputProps } from "./interface";
 
 
-const TokenInput = (props: IInputProps) => {
+const InputToken = (props: IInputProps) => {
   const { name, onKeyDown, length, id, className } = props;
   const [value, setValue] = useState(Array(length).fill(undefined));
 
@@ -63,4 +63,4 @@ const TokenInput = (props: IInputProps) => {
   );
 };
 
-export default TokenInput;
+export default InputToken;

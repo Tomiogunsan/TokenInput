@@ -1,11 +1,11 @@
-# React + TypeScript + Vite
+
 
 <!-- Include the component in your project by importing it: -->
+```ts
+import InputToken from './TokenInput';
+```
 
-import TokenInput from './TokenInput';
-
-
-Props
+## Props
 The component accepts the following props:
 `name` (string): Optional. The name attribute for the input fields. Useful for form submissions.
 
@@ -20,11 +20,11 @@ The component accepts the following props:
 `onSubmit` (function): Optional. A callback that is triggered when the Enter key is pressed. It receives the concatenated value of all inputs as an argument.
 
 
-Usage
+## Usage
 Here's an example of how to use the TokenInput component:
-
+```ts
 import React from 'react';
-import TokenInput from './TokenInput';
+import InputToken from './TokenInput';
 
 const MyComponent = () => {
   const handleKeyDown = (e) => {
@@ -36,7 +36,7 @@ const MyComponent = () => {
   };
 
   return (
-    <TokenInput
+    <InputToken
       name="verificationCode"
       length={6}
       onKeyDown={handleKeyDown}
@@ -47,9 +47,9 @@ const MyComponent = () => {
 };
 
 export default MyComponent;
+```
 
-
-How It Works
+## How It Works
 
 The component renders a series of input fields based on the length prop.
 
@@ -60,14 +60,14 @@ The onSubmit prop is called when the Enter key is pressed, passing the concatena
 The component uses React's useRef hook to manage focus and useEffect to update the input fields whenever the length prop changes.
 
 
-Styling
+## Styling
 
 The TokenInput component allows custom styling through the className prop. Each input element can be styled individually or as a group using the provided class names.
 
-Example Styles
+## Example Styles
 
 You can style the input fields like this:
-
+```css
 .my-token-input {
   width: 2em;
   height: 2em;
@@ -75,9 +75,9 @@ You can style the input fields like this:
   margin: 0 0.5em;
   font-size: 1.5em;
 }
+```
 
-
-Notes
+## Notes
 
 Ensure that the `length ` prop is set correctly according to the number of inputs you require.
 

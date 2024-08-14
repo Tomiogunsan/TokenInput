@@ -1,19 +1,11 @@
 
-// import "./App.css";
 
-import TokenInput from "./components/TokenInput";
+import InputToken from "./components/InputToken";
 
-
-const App = (
- 
-) => {  
- 
-
-
+const App = () => {
   return (
     <>
-      <TokenInput name='gm' length={5} />
-     
+      <InputToken name="gm" length={5} />
     </>
   );
 };
