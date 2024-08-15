@@ -2,7 +2,7 @@
 
 <!-- Include the component in your project by importing it: -->
 ```ts
-import InputToken from './TokenInput';
+import InputToken from './InputToken';
 ```
 
 ## Props
@@ -24,7 +24,7 @@ The component accepts the following props:
 Here's an example of how to use the TokenInput component:
 ```ts
 import React from 'react';
-import InputToken from './TokenInput';
+import InputToken from './InputToken';
 
 const MyComponent = () => {
   const handleKeyDown = (e) => {
@@ -68,7 +68,7 @@ The TokenInput component allows custom styling through the className prop. Each 
 
 You can style the input fields like this:
 ```css
-.my-token-input {
+.my-input-token {
   width: 2em;
   height: 2em;
   text-align: center;
