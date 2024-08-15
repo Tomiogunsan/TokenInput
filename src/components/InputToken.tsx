@@ -1,5 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { IInputProps } from "./interface";
+
+
+
+export interface IInputProps {
+  name?: string;
+  length: number;
+  id?: string;
+  className?: string;
+  onSubmit?: (value: string) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+}
 
 
 const InputToken = (props: IInputProps) => {

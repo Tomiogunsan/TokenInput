@@ -1,13 +1,7 @@
-
-
-import InputToken from "./components/InputToken";
+import React from "react";
 
 const App = () => {
-  return (
-    <>
-      <InputToken name="gm" length={5} />
-    </>
-  );
+  return <div>hi</div>;
 };
 
 export default App;
