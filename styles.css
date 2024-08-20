@@ -1,0 +1,6 @@
+.tokenInputContainer {
+  display: flex;
+  gap: 26px;
+  width: 100%;
+  max-width: 360px;
+}

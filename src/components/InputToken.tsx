@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-
-
+import React, { useEffect, useRef, useState } from "react";
+import "tslib";
 
 export interface IInputProps {
   name?: string;
@@ -10,7 +9,6 @@ export interface IInputProps {
   onSubmit?: (value: string) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
-
 
 const InputToken = (props: IInputProps) => {
   const { name, onKeyDown, length, id, className } = props;
@@ -46,14 +44,18 @@ const InputToken = (props: IInputProps) => {
     props?.onSubmit?.(value.join(""));
   };
 
- 
-
   return (
-    // @ts-expect-error  token input container name attribute
-   <div ref={tokenInputRef} name={name} tabIndex={-1} className='tokenInputContainer'>
+    <div
+      ref={tokenInputRef}
+      // @ts-expect-error  token input container name attribute
+      name={name}
+      tabIndex={-1}
+      className="tokenInputContainer"
+    >
       {Array.from({ length: length }).map((_digit, idx) => (
         <input
           onChange={(e) => {
+            // @ts-expect-error  token input container name attribute
             const newValue = [...value];
             newValue[idx] = e.target.value;
 
