@@ -6,12 +6,12 @@ export interface IInputProps {
   length: number;
   id?: string;
   className?: string;
-  onSubmit?: (value: string) => void;
+  onChange?: (value: string) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const InputToken = (props: IInputProps) => {
-  const { name, onKeyDown, length, id, className } = props;
+  const { name, onKeyDown, length, id, className, onChange } = props;
   const [value, setValue] = useState(Array(length).fill(undefined));
 
   const tokenInputRef = useRef<HTMLDivElement | null>(null);
@@ -23,6 +23,11 @@ const InputToken = (props: IInputProps) => {
     });
     setValue(newValue);
   }, [length]);
+
+  useEffect(() => {
+    onChange?.(value.join(""));
+  }, [value]);
+
   const onInputChange = (value: string, index: number) => {
     if (value) {
       if (index < length - 1) {
@@ -39,9 +44,9 @@ const InputToken = (props: IInputProps) => {
     }
   };
 
-  const onSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    onKeyDown?.(e);
-    props?.onSubmit?.(value.join(""));
+  const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (onKeyDown) onKeyDown(event);
+    
   };
 
   return (
@@ -64,7 +69,7 @@ const InputToken = (props: IInputProps) => {
             onInputChange(e.target.value, idx);
           }}
           value={value[idx]}
-          onKeyDown={onSubmit}
+          onKeyDown={onInputKeyDown}
           maxLength={1}
           name={name && `${name}[${idx}]`}
           id={id}

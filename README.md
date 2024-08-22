@@ -1,11 +1,13 @@
-
-
 <!-- Include the component in your project by importing it: -->
+
+## A React component for entering verification/PIN codes.
+
 ```ts
-import InputToken from './InputToken';
+import InputToken from "input-token";
 ```
 
 ## Props
+
 The component accepts the following props:
 `name` (string): Optional. The name attribute for the input fields. Useful for form submissions.
 
@@ -17,22 +19,23 @@ The component accepts the following props:
 
 `className` (string): Optional. The className for the input fields, allowing for custom styling.
 
-`onSubmit` (function): Optional. A callback that is triggered when the Enter key is pressed. It receives the concatenated value of all inputs as an argument.
-
+`onChange` (function): Optional. A callback that is triggered when the Enter key is pressed. It receives the concatenated value of all inputs as an argument.
 
 ## Usage
+
 Here's an example of how to use the TokenInput component:
+
 ```ts
-import React from 'react';
-import InputToken from './InputToken';
+import InputToken from "input-token";
+import "input-token/styles.css";
 
 const MyComponent = () => {
   const handleKeyDown = (e) => {
-    console.log('Key down:', e.key);
+    console.log("Key down:", e.key);
   };
 
   const handleSubmit = (token) => {
-    console.log('Token submitted:', token);
+    console.log("Token submitted:", token);
   };
 
   return (
@@ -40,7 +43,7 @@ const MyComponent = () => {
       name="verificationCode"
       length={6}
       onKeyDown={handleKeyDown}
-      onSubmit={handleSubmit}
+      onChange={handleSubmit}
       className="my-token-input"
     />
   );
@@ -59,7 +62,6 @@ The onSubmit prop is called when the Enter key is pressed, passing the concatena
 
 The component uses React's useRef hook to manage focus and useEffect to update the input fields whenever the length prop changes.
 
-
 ## Styling
 
 The TokenInput component allows custom styling through the className prop. Each input element can be styled individually or as a group using the provided class names.
@@ -67,6 +69,7 @@ The TokenInput component allows custom styling through the className prop. Each 
 ## Example Styles
 
 You can style the input fields like this:
+
 ```css
 .my-input-token {
   width: 2em;
