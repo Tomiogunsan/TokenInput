@@ -5,7 +5,7 @@ export interface IInputProps {
     length: number;
     id?: string;
     className?: string;
-    onSubmit?: (value: string) => void;
+    onChange?: (value: string) => void;
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 declare const InputToken: (props: IInputProps) => React.JSX.Element;

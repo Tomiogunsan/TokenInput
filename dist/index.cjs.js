@@ -6,7 +6,7 @@ var tslib = require('tslib');
 var React = require('react');
 
 var InputToken = function (props) {
-    var name = props.name, onKeyDown = props.onKeyDown, length = props.length, id = props.id, className = props.className;
+    var name = props.name, onKeyDown = props.onKeyDown, length = props.length, id = props.id, className = props.className, onChange = props.onChange;
     var _a = React.useState(Array(length).fill(undefined)), value = _a[0], setValue = _a[1];
     var tokenInputRef = React.useRef(null);
     React.useEffect(function () {
@@ -16,6 +16,9 @@ var InputToken = function (props) {
         });
         setValue(newValue);
     }, [length]);
+    React.useEffect(function () {
+        onChange === null || onChange === void 0 ? void 0 : onChange(value.join(""));
+    }, [value]);
     var onInputChange = function (value, index) {
         var _a, _b, _c, _d;
         if (value) {
@@ -29,10 +32,9 @@ var InputToken = function (props) {
             }
         }
     };
-    var onSubmit = function (e) {
-        var _a;
-        onKeyDown === null || onKeyDown === void 0 ? void 0 : onKeyDown(e);
-        (_a = props === null || props === void 0 ? void 0 : props.onSubmit) === null || _a === void 0 ? void 0 : _a.call(props, value.join(""));
+    var onInputKeyDown = function (event) {
+        if (onKeyDown)
+            onKeyDown(event);
     };
     return (React.createElement("div", { ref: tokenInputRef, 
         // @ts-expect-error  token input container name attribute
@@ -42,7 +44,7 @@ var InputToken = function (props) {
             newValue[idx] = e.target.value;
             setValue(newValue);
             onInputChange(e.target.value, idx);
-        }, value: value[idx], onKeyDown: onSubmit, maxLength: 1, name: name && "".concat(name, "[").concat(idx, "]"), id: id, className: className })); })));
+        }, value: value[idx], onKeyDown: onInputKeyDown, maxLength: 1, name: name && "".concat(name, "[").concat(idx, "]"), id: id, className: className })); })));
 };
 
 // import React, { useState } from "react";
