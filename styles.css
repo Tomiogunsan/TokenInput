@@ -4,3 +4,8 @@
   width: 100%;
   max-width: 360px;
 }
+
+
+.tokenInputContainer.error {
+    border-color: pink;
+}

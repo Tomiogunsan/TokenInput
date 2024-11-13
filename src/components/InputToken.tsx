@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+
 import "tslib";
 
 export interface IInputProps {
@@ -8,11 +9,24 @@ export interface IInputProps {
   className?: string;
   onChange?: (value: string) => void;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  isError?: boolean;
+  errorClassName?: string;
 }
 
 const InputToken = (props: IInputProps) => {
-  const { name, onKeyDown, length, id, className, onChange } = props;
+  const {
+    name,
+    onKeyDown,
+    length,
+    id,
+    className,
+    onChange,
+    isError,
+    errorClassName,
+  } = props;
   const [value, setValue] = useState(Array(length).fill(undefined));
+
+  const [error, setError] = useState(false);
 
   const tokenInputRef = useRef<HTMLDivElement | null>(null);
 
@@ -23,6 +37,10 @@ const InputToken = (props: IInputProps) => {
     });
     setValue(newValue);
   }, [length]);
+
+  useEffect(() => {
+    setError(!!isError); 
+  }, [isError]);
 
   useEffect(() => {
     onChange?.(value.join(""));
@@ -46,7 +64,6 @@ const InputToken = (props: IInputProps) => {
 
   const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (onKeyDown) onKeyDown(event);
-    
   };
 
   return (
@@ -73,7 +90,9 @@ const InputToken = (props: IInputProps) => {
           maxLength={1}
           name={name && `${name}[${idx}]`}
           id={id}
-          className={className}
+          
+          className={`${className} ${error ? errorClassName : ""}`}
+          
         />
       ))}
     </div>

@@ -1,2 +1,2 @@
-import InputToken from './components/InputToken';
+import InputToken from "./components/InputToken";
 export default InputToken;

@@ -2,8 +2,9 @@ import { __spreadArray } from 'tslib';
 import React, { useState, useRef, useEffect } from 'react';
 
 var InputToken = function (props) {
-    var name = props.name, onKeyDown = props.onKeyDown, length = props.length, id = props.id, className = props.className, onChange = props.onChange;
+    var name = props.name, onKeyDown = props.onKeyDown, length = props.length, id = props.id, className = props.className, onChange = props.onChange, isError = props.isError, errorClassName = props.errorClassName;
     var _a = useState(Array(length).fill(undefined)), value = _a[0], setValue = _a[1];
+    var _b = useState(false), error = _b[0], setError = _b[1];
     var tokenInputRef = useRef(null);
     useEffect(function () {
         var newValue = Array(length).fill("");
@@ -12,6 +13,9 @@ var InputToken = function (props) {
         });
         setValue(newValue);
     }, [length]);
+    useEffect(function () {
+        setError(!!isError);
+    }, [isError]);
     useEffect(function () {
         onChange === null || onChange === void 0 ? void 0 : onChange(value.join(""));
     }, [value]);
@@ -40,9 +44,7 @@ var InputToken = function (props) {
             newValue[idx] = e.target.value;
             setValue(newValue);
             onInputChange(e.target.value, idx);
-        }, value: value[idx], onKeyDown: onInputKeyDown, maxLength: 1, name: name && "".concat(name, "[").concat(idx, "]"), id: id, className: className })); })));
+        }, value: value[idx], onKeyDown: onInputKeyDown, maxLength: 1, name: name && "".concat(name, "[").concat(idx, "]"), id: id, className: "".concat(className, " ").concat(error ? errorClassName : "") })); })));
 };
-
-// import React, { useState } from "react";
 
 export { InputToken as default };

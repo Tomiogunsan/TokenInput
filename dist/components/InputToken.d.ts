@@ -7,6 +7,8 @@ export interface IInputProps {
     className?: string;
     onChange?: (value: string) => void;
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    isError?: boolean;
+    errorClassName?: string;
 }
 declare const InputToken: (props: IInputProps) => React.JSX.Element;
 export default InputToken;
