@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 
 import "tslib";
 
-export interface IInputProps {
+export type IDataTestId = {
+  "data-test-id": string;
+};
+
+export type IInputProps  = {
   name?: string;
   length: number;
   id?: string;
@@ -11,7 +15,7 @@ export interface IInputProps {
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   isError?: boolean;
   errorClassName?: string;
-}
+} & IDataTestId
 
 const InputToken = (props: IInputProps) => {
   const {
