@@ -1,6 +1,9 @@
 import React from "react";
 import "tslib";
-export interface IInputProps {
+export type IDataTestId = {
+    "data-test-id": string;
+};
+export type IInputProps = {
     name?: string;
     length: number;
     id?: string;
@@ -9,6 +12,6 @@ export interface IInputProps {
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     isError?: boolean;
     errorClassName?: string;
-}
+} & IDataTestId;
 declare const InputToken: (props: IInputProps) => React.JSX.Element;
 export default InputToken;
